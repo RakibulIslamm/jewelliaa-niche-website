@@ -8,12 +8,3 @@ const firebaseConfig = {
 };
 
 export default firebaseConfig;
-
-/* const firebaseConfig = {
-    apiKey: "AIzaSyD4MjxjKet--nu7JyUY5AXN_m-vf4xbdHc",
-    authDomain: "jewelliaa.firebaseapp.com",
-    projectId: "jewelliaa",
-    storageBucket: "jewelliaa.appspot.com",
-    messagingSenderId: "998844127474",
-    appId: "1:998844127474:web:b5acd71d5ad9b84bdd186b"
-  }; */
