@@ -4,12 +4,16 @@ import OrdersRow from './OrdersRow/OrdersRow';
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
     const [updatedOrder, setUpdatedOrder] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('https://murmuring-beyond-78221.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
             .catch(error => console.log(error))
+            .finally(() => {
+                setLoading(false);
+            })
     }, [updatedOrder]);
 
     const handleOrderDelete = (id) => {
@@ -51,7 +55,7 @@ const ManageAllOrders = () => {
     return (
         <div className="w-full min-h-screen flex justify-center items-center">
             <div className=" w-full px-12">
-                <h2 className="text-3xl font-bold py-3">This is manage all orders</h2>
+                <h2 className="text-3xl font-bold py-3">Manage all orders</h2>
                 <div className="flex flex-col text-left">
                     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -70,11 +74,13 @@ const ManageAllOrders = () => {
                                             <th scope="col" className="px-6 py-3 text-left text-sm text-gray-900 font-bold uppercase tracking-wider">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {
-                                            orders.map(order => <OrdersRow key={order._id} order={order} handleOrderDelete={handleOrderDelete} handleOrderApprove={handleOrderApprove}></OrdersRow>)
-                                        }
-                                    </tbody>
+                                    {
+                                        loading ? <p className="text-lg font-bold py-5 px-5">Loading...</p> : !orders.length ? <p className="text-lg font-bold py-5 px-5">No order found</p> : <tbody className="bg-white divide-y divide-gray-200">
+                                            {
+                                                orders.map(order => <OrdersRow key={order._id} order={order} handleOrderDelete={handleOrderDelete} handleOrderApprove={handleOrderApprove}></OrdersRow>)
+                                            }
+                                        </tbody>
+                                    }
                                 </table>
                             </div>
                         </div>

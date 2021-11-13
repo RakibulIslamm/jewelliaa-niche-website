@@ -4,12 +4,16 @@ import TableRow from './TableRow/TableRow';
 const ManageProducts = () => {
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('https://murmuring-beyond-78221.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(error => console.log(error))
+            .finally(() => {
+                setLoading(false);
+            })
     }, []);
 
     const handleDeleteProduct = (id) => {
@@ -49,11 +53,14 @@ const ManageProducts = () => {
                                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {
-                                            products.slice().reverse().map(product => <TableRow key={product._id} product={product} handleDeleteProduct={handleDeleteProduct}></TableRow>)
-                                        }
-                                    </tbody>
+                                    {
+                                        loading ? <p className="text-lg font-bold py-5 px-5">Loading...</p> : !products.length ? <p className="text-lg font-bold py-5 px-5">No product found</p> : <tbody className="bg-white divide-y divide-gray-200">
+                                            {
+                                                products.slice().reverse().map(product => <TableRow key={product._id} product={product} handleDeleteProduct={handleDeleteProduct}></TableRow>)
+                                            }
+                                        </tbody>
+                                    }
+
                                 </table>
                             </div>
                         </div>
