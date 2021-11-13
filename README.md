@@ -20,4 +20,4 @@ In this project, I developed a simple Niche Product Website website with react, 
 
 
 ## Technology used
-* I used `tailwind`, `React`, `React Router`, `Firebase`, `node express`, `mongodb`, `react icon library` and `Heroku`
+* I used `tailwind`, `React`, `React Router`, `Firebase`, `react icon library`
