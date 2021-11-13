@@ -58,11 +58,13 @@ const MyOrders = () => {
                                             <th scope="col" className="px-6 py-3 text-left text-sm text-gray-900 font-bold uppercase tracking-wider">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {
-                                            myOrders.map(myOrder => <MyOrderRow key={myOrder._id} myOrder={myOrder} handleOrderDelete={handleOrderDelete}></MyOrderRow>)
-                                        }
-                                    </tbody>
+                                    {
+                                        !myOrders.length ? <p className="text-lg font-bold py-5 px-5">Loading...</p> : <tbody className="bg-white divide-y divide-gray-200">
+                                            {
+                                                myOrders.map(myOrder => <MyOrderRow key={myOrder._id} myOrder={myOrder} handleOrderDelete={handleOrderDelete}></MyOrderRow>)
+                                            }
+                                        </tbody>
+                                    }
                                 </table>
                             </div>
                         </div>

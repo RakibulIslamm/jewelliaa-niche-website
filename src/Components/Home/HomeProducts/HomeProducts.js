@@ -15,16 +15,18 @@ const HomeProducts = () => {
 
     return (
         <div className="py-10">
-            <div className="px-20 xs:px-6 sm:px-10">
-                <h1 className="text-4xl font-bold text-center">Feature Products</h1>
-                {
-                    loading ? <h1 className="text-xl font-bold text-center py-20">Loading...</h1> : <div className="grid grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 gap-8 pt-10">
-                        {
-                            products.slice().reverse().slice(0, 6).map(product => <Product key={product._id} product={product}></Product>)
-                        }
-                    </div>
-                }
-            </div>
+            {
+                !products.length ? <h1 className="text-xl font-bold text-center py-20">Loading...</h1> : <div className="px-20 xs:px-6 sm:px-10">
+                    <h1 className="text-4xl font-bold text-center">Feature Products</h1>
+                    {
+                        loading ? <h1 className="text-xl font-bold text-center py-20">Loading...</h1> : <div className="grid grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 gap-8 pt-10">
+                            {
+                                products.slice().reverse().slice(0, 6).map(product => <Product key={product._id} product={product}></Product>)
+                            }
+                        </div>
+                    }
+                </div>
+            }
         </div>
     );
 };

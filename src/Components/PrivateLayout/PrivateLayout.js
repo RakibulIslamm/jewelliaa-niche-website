@@ -15,6 +15,7 @@ import MyOrders from './MyOrders/MyOrders';
 import Review from './Review/Review';
 import useAuth from '../hooks/useAuth';
 import AdminRoute from '../AdminRoute/AdminRoute';
+import DashboardFooter from '../Shared/DashboardFooter/DashboardFooter';
 
 const PrivateLayout = () => {
     const [toggle, setToggle] = useState(false);
@@ -132,6 +133,7 @@ const PrivateLayout = () => {
                             <Review></Review>
                         </PrivateRoute>
                     </Switch>
+                    <DashboardFooter></DashboardFooter>
                 </div>
             </div>
         </>
