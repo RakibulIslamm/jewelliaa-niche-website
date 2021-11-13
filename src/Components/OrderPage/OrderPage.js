@@ -45,14 +45,14 @@ const OrderPage = () => {
         <>
             {
                 !loading ? <div>
-                    <div className="px-20 py-5 min-h-screen flex items-start gap-5">
-                        <div className="w-6/12 flex flex-col items-end text-right">
+                    <div className="px-20 xs:px-5 sm:px-10 py-5 min-h-screen flex items-start xs:flex-col sm:flex-col gap-5">
+                        <div className="w-6/12 xs:w-full sm:w-full flex flex-col items-end text-right">
                             <img className="w-3/6 border border-gray-200 shadow" src={product.img} alt="" />
                             <h2 className="text-2xl font-bold mt-2 mb-1">{product.name}</h2>
                             <p className="text-lg font-semibold mb-3">{product.shortDesc}</p>
                             <p className="text-lg">{product.desc}</p>
                         </div>
-                        <div className="w-6/12">
+                        <div className="w-6/12 xs:w-full sm:w-full">
                             <form className="w-full flex items-start flex-col" onSubmit={handleSubmit(onSubmit)}>
                                 {/* <h2 className="text-2xl font-bold">Order Now</h2> */}
                                 <input className="bg-gray-200 px-5 py-3 block w-full outline-none focus:bg-white border focus:border-gray-500 rounded my-2" type="text" {...register("name")} value={user?.displayName} disabled placeholder="Name" />
