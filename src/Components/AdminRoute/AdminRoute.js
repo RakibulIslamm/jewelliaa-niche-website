@@ -10,8 +10,6 @@ const AdminRoute = ({ children, ...rest }) => {
         </div>
     }
 
-    console.log(admin);
-
     return (
         <Route
             {...rest}

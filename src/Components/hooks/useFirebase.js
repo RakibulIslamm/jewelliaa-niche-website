@@ -98,7 +98,6 @@ const useFirebase = () => {
     useEffect(() => {
         if (!user) return
         const url = `https://murmuring-beyond-78221.herokuapp.com/admin/${user?.email}`;
-        console.log(url);
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -106,8 +105,6 @@ const useFirebase = () => {
             })
             .catch(error => setError(error))
     }, [user]);
-
-    console.log(admin);
 
     // log out
     const logOut = (history) => {
