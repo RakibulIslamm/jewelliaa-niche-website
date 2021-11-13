@@ -6,32 +6,32 @@ const ManageAllOrders = () => {
     const [updatedOrder, setUpdatedOrder] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://murmuring-beyond-78221.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data))
             .catch(error => console.log(error))
     }, [updatedOrder]);
 
     const handleOrderDelete = (id) => {
-        fetch(`http://localhost:5000/order/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                const proceed = window.confirm('Are you sure you want to delete?')
-                if (proceed) {
+        const proceed = window.confirm('Are you sure you want to delete?');
+        if (proceed) {
+            fetch(`https://murmuring-beyond-78221.herokuapp.com/order/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
                     if (data.deletedCount) {
                         alert('Order Deleted');
                         const rest = orders.filter(order => order._id !== id);
                         setOrders(rest);
                     }
-                }
-            })
-            .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
+        }
     }
 
     const handleOrderApprove = (id) => {
-        fetch(`http://localhost:5000/update-order`, {
+        fetch(`https://murmuring-beyond-78221.herokuapp.com/update-order`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

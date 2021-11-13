@@ -7,7 +7,7 @@ const HomeProducts = () => {
     const { loading } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://murmuring-beyond-78221.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(error => console.log(error))

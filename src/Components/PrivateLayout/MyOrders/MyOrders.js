@@ -7,7 +7,7 @@ const MyOrders = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/user-orders', {
+        fetch('https://murmuring-beyond-78221.herokuapp.com/user-orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -19,6 +19,24 @@ const MyOrders = () => {
                 setMyOrders(data);
             })
     }, [user]);
+
+    const handleOrderDelete = (id) => {
+        const proceed = window.confirm('Are you sure you want to delete?')
+        if (proceed) {
+            fetch(`https://murmuring-beyond-78221.herokuapp.com/order/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        alert('Order Deleted');
+                        const rest = myOrders.filter(order => order._id !== id);
+                        setMyOrders(rest);
+                    }
+                })
+                .catch(error => console.log(error))
+        }
+    }
 
     return (
         <div className="w-full h-screen flex justify-center items-center">
@@ -42,7 +60,7 @@ const MyOrders = () => {
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {
-                                            myOrders.map(myOrder => <MyOrderRow key={myOrder._id} myOrder={myOrder}></MyOrderRow>)
+                                            myOrders.map(myOrder => <MyOrderRow key={myOrder._id} myOrder={myOrder} handleOrderDelete={handleOrderDelete}></MyOrderRow>)
                                         }
                                     </tbody>
                                 </table>

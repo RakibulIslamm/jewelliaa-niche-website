@@ -10,7 +10,7 @@ const OrderPage = () => {
     const { user, loading } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`https://murmuring-beyond-78221.herokuapp.com/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
             .catch(error => console.log(error))
@@ -24,7 +24,7 @@ const OrderPage = () => {
         data.status = 'pending'
         data.productName = product.name;
         data.productId = product._id;
-        fetch('http://localhost:5000/orders', {
+        fetch('https://murmuring-beyond-78221.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

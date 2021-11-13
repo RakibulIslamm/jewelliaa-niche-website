@@ -7,7 +7,7 @@ import AddProduct from './AddProduct/AddProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
 import ManageProducts from './ManageProducts/ManageProducts';
-import { IoGridSharp, IoAddCircleSharp, IoPersonAddSharp, IoFileTrayFullSharp, IoHammerSharp, IoExitSharp, IoCardSharp, IoDocumentTextSharp, IoStarSharp } from "react-icons/io5";
+import { IoGridSharp, IoAddCircleSharp, IoPersonAddSharp, IoFileTrayFullSharp, IoHammerSharp, IoExitSharp, IoCardSharp, IoDocumentTextSharp, IoStarSharp, IoCloseSharp } from "react-icons/io5";
 import Dashboard from './Dashboard/Dashboard';
 import logo from '../../images/logo.png'
 import Pay from './Pay/Pay';
@@ -42,7 +42,7 @@ const PrivateLayout = () => {
                         </div>
                         <Link className="flex items-center gap-4 font-normal text-white" to={`${url}`}> <IoGridSharp className="text-2xl" /> Dashboard</Link>
                         {
-                            admin?.admin && <div className="w-full font-sans flex items-start flex-col gap-6">
+                            admin && <div className="w-full font-sans flex items-start flex-col gap-6">
                                 <Link className="flex items-center gap-4 font-normal text-white" to={`${url}/add-product`}><IoAddCircleSharp className="text-2xl" />Add Product</Link>
 
                                 <Link className="flex items-center gap-4 font-normal text-white" to={`${url}/make-admin`}><IoPersonAddSharp className="text-2xl" />Make Admin</Link>
@@ -53,7 +53,7 @@ const PrivateLayout = () => {
                             </div>
                         }
                         {
-                            !admin?.admin && <div className="w-full font-sans flex items-start flex-col gap-6">
+                            !admin && <div className="w-full font-sans flex items-start flex-col gap-6">
                                 <Link className="flex items-center gap-4 font-normal text-white" to={`${url}/pay`}><IoCardSharp className="text-2xl" />Pay</Link>
 
                                 <Link className="flex items-center gap-4 font-normal text-white" to={`${url}/my-orders`}><IoDocumentTextSharp className="text-2xl" />My Orders</Link>
@@ -76,11 +76,11 @@ const PrivateLayout = () => {
                                     <h2 className="text-2xl font-bold text-white tracking-wider">Jewelliaa</h2>
                                 </Link>
                             </div>
-                            <button onClick={handleToggle} className="text-2xl text-white hidden xs:block sm:block">X</button>
+                            <button onClick={handleToggle} className="text-2xl text-white hidden xs:block sm:block"><IoCloseSharp /></button>
                         </div>
                         <Link onClick={handleToggle} className="flex items-center gap-4 font-normal text-white" to={`${url}`}> <IoGridSharp className="text-2xl" /> Dashboard</Link>
                         {
-                            admin?.admin && <div className="w-full font-sans flex items-start flex-col gap-6">
+                            admin && <div className="w-full font-sans flex items-start flex-col gap-6">
                                 <Link onClick={handleToggle} className="flex items-center gap-4 font-normal text-white" to={`${url}/add-product`}><IoAddCircleSharp className="text-2xl" />Add Product</Link>
 
                                 <Link onClick={handleToggle} className="flex items-center gap-4 font-normal text-white" to={`${url}/make-admin`}><IoPersonAddSharp className="text-2xl" />Make Admin</Link>
@@ -91,7 +91,7 @@ const PrivateLayout = () => {
                             </div>
                         }
                         {
-                            !admin?.admin && <div className="w-full font-sans flex items-start flex-col gap-6">
+                            !admin && <div className="w-full font-sans flex items-start flex-col gap-6">
                                 <Link onClick={handleToggle} className="flex items-center gap-4 font-normal text-white" to={`${url}/pay`}><IoCardSharp className="text-2xl" />Pay</Link>
 
                                 <Link onClick={handleToggle} className="flex items-center gap-4 font-normal text-white" to={`${url}/my-orders`}><IoDocumentTextSharp className="text-2xl" />My Orders</Link>

@@ -8,7 +8,7 @@ const Banner = () => {
             backgroundImage: `url(${banner})`
         }}>
             <div className="px-20 xs:px-6 text-right">
-                <h2 className="text-6xl font-bold">This is what you <br /> came for</h2>
+                <h2 className="text-6xl xs:text-5xl font-bold">This is what you <br /> came for</h2>
                 <Link to="/shop">
                     <button className="px-10 py-2 bg-yellow-400 text-black font-semibold mt-5 font-sans tracking-wider focus:bg-yellow-300">Explore</button>
                 </Link>

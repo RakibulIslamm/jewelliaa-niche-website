@@ -10,7 +10,7 @@ const useFirebase = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [alert, setAlert] = useState(false);
-    const [admin, setAdmin] = useState(false);
+    const [admin, setAdmin] = useState(null);
 
     const auth = getAuth();
 
@@ -31,7 +31,7 @@ const useFirebase = () => {
 
                 savedDataOnDb(name, email);
 
-                history.push('/');
+                history.push('/dashboard');
                 console.log(result.user);
             })
             .catch(error => {
@@ -52,7 +52,7 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setUser(result.user);
-                const url = location?.state?.from || '/';
+                const url = location?.state?.from || '/dashboard';
                 history.push(url);
             })
             .catch(error => {
@@ -64,7 +64,8 @@ const useFirebase = () => {
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        setLoading(true);
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
             }
@@ -73,11 +74,12 @@ const useFirebase = () => {
             }
             setLoading(false);
         })
+        return () => unsubscribe
     }, [auth]);
 
 
     const savedDataOnDb = (name, email) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://murmuring-beyond-78221.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -94,12 +96,18 @@ const useFirebase = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/admin/${user?.email}`)
+        if (!user) return
+        const url = `https://murmuring-beyond-78221.herokuapp.com/admin/${user?.email}`;
+        console.log(url);
+        fetch(url)
             .then(res => res.json())
-            .then(data => setAdmin(data))
+            .then(data => {
+                setAdmin(data.admin)
+            })
             .catch(error => setError(error))
     }, [user]);
 
+    console.log(admin);
 
     // log out
     const logOut = (history) => {

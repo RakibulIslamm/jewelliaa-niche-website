@@ -16,7 +16,7 @@ const Review = () => {
     const onSubmit = data => {
         data.name = user?.displayName;
         data.rating = rating;
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://murmuring-beyond-78221.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

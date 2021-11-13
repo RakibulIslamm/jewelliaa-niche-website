@@ -9,6 +9,7 @@ const PrivateRoute = ({ children, ...rest }) => {
             <p>Loading...</p>
         </div>
     }
+
     return (
         <Route
             {...rest}

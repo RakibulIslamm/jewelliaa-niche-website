@@ -6,14 +6,14 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://murmuring-beyond-78221.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(error => console.log(error))
     }, []);
 
     const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://murmuring-beyond-78221.herokuapp.com/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

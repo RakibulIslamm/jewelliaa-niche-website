@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyOrderRow = ({ myOrder }) => {
+const MyOrderRow = ({ myOrder, handleOrderDelete }) => {
     const { productName, _id, status } = myOrder;
     return (
         <tr className="text-left">
@@ -16,7 +16,7 @@ const MyOrderRow = ({ myOrder }) => {
                 {status}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                <button className="px-3 bg-yellow-300">Delete</button>
+                <button onClick={() => handleOrderDelete(_id)} className="px-3 bg-yellow-300">Delete</button>
             </td>
         </tr>
     );

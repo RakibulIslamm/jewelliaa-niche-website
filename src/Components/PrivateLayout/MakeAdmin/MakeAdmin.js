@@ -7,7 +7,7 @@ const MakeAdmin = () => {
     const { user, error, setError } = useAuth();
     const onSubmit = (data) => {
         // console.log(data);
-        fetch(`http://localhost:5000/make-admin/${user.email}`, {
+        fetch(`https://murmuring-beyond-78221.herokuapp.com/make-admin/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ const MakeAdmin = () => {
             <p>{error}</p>
             <form onSubmit={handleSubmit(onSubmit)} className="w-8/12 xs:w-full sm:w-full flex items-center flex-col">
                 <input className="bg-gray-200 px-5 py-3 block w-8/12 outline-none focus:bg-white border focus:border-gray-500 rounded my-2" type="email" {...register("email", { required: true })} placeholder="Email" />
-                <button className="bg-yellow-500 text-gray-900 px-5 py-3 block px-5 outline-none rounded my-2 text-xl font-semibold" type="submit">Make Admin</button>
+                <button className="bg-yellow-500 text-gray-900 py-3 block px-5 outline-none rounded my-2 text-xl font-semibold" type="submit">Make Admin</button>
             </form>
         </div>
     );

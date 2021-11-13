@@ -7,7 +7,7 @@ const Shop = () => {
     const { loading } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://murmuring-beyond-78221.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(error => console.log(error))
@@ -15,12 +15,12 @@ const Shop = () => {
 
     return (
         <div className="py-10">
-            <div className="px-20 min-h-screen">
+            <div className="px-20 xs:px-5 sm:px-10 min-h-screen">
                 <h1 className="text-4xl font-bold text-center">All Products</h1>
                 {
                     loading ? <div className="flex justify-center items-center py-40">
                         <h1 className="text-xl font-bold">Loading...</h1>
-                    </div> : <div className="grid grid-cols-3 gap-8 pt-10">
+                    </div> : <div className="grid grid-cols-3 xs:grid-cols-1 sm:grid-cols-1 gap-8 pt-10">
                         {
                             products.slice().reverse().map(product => <Product key={product._id} product={product}></Product>)
                         }
